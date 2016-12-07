@@ -24,6 +24,8 @@ class Bee:
         self.objvalue = float("inf")
         self.val = param.SN
         self.limit = int(0)
+        #if there is any number of bias, initialize it
+        self.bias = []
 
 
        # for i in range(0,size):

@@ -81,30 +81,29 @@ class Cycles ():
 
     #scout cycle
     def scoutCycle(self, sol = Bee):
-        pass
         #lista de index de  abelhas que ultrapassaram o limit
-        #limit_bee = [] 
+        limit_bee = [] 
         #checar se ha alguma abelha que ultrapassou o limite
-        #for i in range(0, int(self.parameters.SN)):
-           # if (sol[i].limit >= self.parameters.limit):
-               # limit_bee.append(i)
+        for i in range(0, int(self.parameters.SN)):
+            if (sol[i].limit >= self.parameters.limit):
+                limit_bee.append(i)
         #escolher as fontes para cada scout que houver por uma sample
-       # chosen = random.sample(limit_bee, self.parameters.scoutnum)
+        if (limit_bee):
+            chosen = random.sample(limit_bee, self.parameters.scoutnum)
         #print("chosen:", chosen, sol[chosen[0]].weights)
         #gerar novos valores pra nova fonte
-        #for i in range (0, len(chosen)):
-            #temp = copy.deepcopy(sol[chosen[i]])
-           # j = random.randint(0,self.parameters.size-1) 
-           # temp.weights[j] = random.uniform(-1, 1) 
-
-           # temp.objvalue = self.evaluate(temp)
-           # if(temp.objvalue < sol[chosen[i]].objvalue):
-             #   sol[chosen[i]].weights[j] = temp.weights[j] 
-              #  sol[chosen[i]].objvalue = temp.objvalue
-              #  sol[chosen[i]].limit = 0
+            for i in range (0, len(chosen)):
+                temp = copy.deepcopy(sol[chosen[i]])
+                j = random.randint(0,self.parameters.size-1) 
+                temp.weights[j] = random.uniform(-1, 1) 
+                temp.objvalue = self.evaluate(temp)
+                if(temp.objvalue < sol[chosen[i]].objvalue):
+                    sol[chosen[i]].weights[j] = temp.weights[j] 
+                    sol[chosen[i]].objvalue = temp.objvalue
+                    sol[chosen[i]].limit = 0
         #print("chosen after:", chosen, sol[chosen[0]].weights)
-           # else:
-             #   sol[chosen[i]].limit += 1
+                else:
+                    sol[chosen[i]].limit += 1
 
     def evaluate(self,  sol = Bee):
     	#generic function for fitness assessment
