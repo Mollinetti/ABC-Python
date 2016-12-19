@@ -114,7 +114,7 @@ class Cycles ():
 
             #elif g.genotype[i] > self.param.uppBound[i]:
                 #g.genotype[i] = self.param.uppBound[i]
-        result = getattr(Eval, self.parameters.funcName)(sol.weights)
+        result = getattr(Eval, "foo")(sol.weights)
         return result
 
 

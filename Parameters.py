@@ -1,8 +1,4 @@
-'''
-Created on 01/07/2015
-
-@author: Mollinetti
-'''
+import util
 
 class Params:
     
@@ -20,12 +16,11 @@ class Params:
         self.onlnum = int(self.SN/2)
         self.scoutnum = int(data[2])
         self.limit   = int(data[3]) 
-        self.MCN  = int(data[len(data)-1])
-        line = data[len(data)-4]
+        line = data[4]
         self.lowBound = line.split()
         self.lowBound = list(map(float, self.lowBound))
-        line = data[len(data)-3]
+        line = data[5]
         self.uppBound = line.split()
         self.uppBound = list(map(float, self.uppBound))
-        self.funcName = data[len(data)-2]
-
+        self.MCN  = int(data[6])
+        self.isbias = str(data[7])
