@@ -23,32 +23,36 @@ def __sigmoid_prime(x):
 #calcula o erro da rede neural toda
 def error(training_inputs, training_outputs, weights, bias, dim):
 	#lista de lista de outputs
-	output = []
+	total = 0
+
+	#itera para todos os inputs e outputs
+	for input_size in range(0,len(training_inputs)):
 	#itera para a primeira hidden layer dim  = 1
-	temp = []
-	for i in range(0,dim[1]):
-		temp.append(__sigmoid(sum(numpy.add(numpy.multiply(weights[i*dim[0]:((i+1)*dim[0])],training_inputs),bias[0]))))
-	output.append(temp[:])
-	#itera para as outras layers
-	for j in range(2,len(dim)):
+		output = []
 		temp = []
-		for i in range(0,dim[j]):
-			ind = numpy.prod(dim[0:j])
-			print(ind)
-			temp.append(__sigmoid(sum(numpy.add(numpy.multiply(weights[ind+(i*dim[j-1]):ind+((i+1)*dim[j-1])],output[j-2]),bias[j-1]))))
+		for i in range(0,dim[1]):
+			temp.append(__sigmoid(sum(numpy.add(numpy.multiply(weights[i*dim[0]:((i+1)*dim[0])],training_inputs[input_size]),bias[0]))))
 		output.append(temp[:])
+		#itera para as outras layers
+		for j in range(2,len(dim)):
+			temp = []
+			for i in range(0,dim[j]):
+				ind = numpy.prod(dim[0:j])
+				print(ind)
+				temp.append(__sigmoid(sum(numpy.add(numpy.multiply(weights[ind+(i*dim[j-1]):ind+((i+1)*dim[j-1])],output[j-2]),bias[j-1]))))
+			output.append(temp[:])
 
-	#calcula a funcao erro 1/2n sum(euclid(expected - actual)^2)
-	#armazenar a soma do erro
-	summation = 0
+		#calcula a funcao erro sum(euclid(expected - actual)^2)
+		#armazenar a soma do erro
+		summation = 0
+		for i in range(0,len(output[-1])):
+			summation += math.pow(numpy.linalg.norm(training_outputs[input_size][i] - output[-1][i]),2)
+		total += summation
 
-	for x in output[-1]:
-		summation+= math.pow(numpy.linalg.norm(training_outputs[x] - output[-1][x]),2)
+	#print(output)
 
-
-	print(output)
-
-	return (1/2len(training_outputs)) * summation
+	#calcula 1/2n * summation
+	return (0.5 * len(training_outputs))* summation
 
 
 

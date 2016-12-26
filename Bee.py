@@ -25,7 +25,7 @@ class Bee:
         self.limit = int(0)
         #if there is  number of bias, initialize it
         self.bias = []
-        if(self.isbias == "yes"):
+        if(param.isbias == "yes"):
             for _ in range(0,len(param.dim)-1):
                 self.bias.append(random.uniform(-1,1))
 
