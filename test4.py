@@ -11,6 +11,6 @@ b = Bee.Bee(p)
 
 #c.employedCycle(b)
 
-print (Eval.error([[1,1,1],[1,0,1]], [[1],[0]], b.weights, b.bias, p.dim))
+print (Eval.error2([[1,1,1],[1,0,1]], [[1],[0]], b.weights, b.bias, p.dim))
 
 #def error(self, training_inputs, training_outputs, weights, bias, param = Parameters):

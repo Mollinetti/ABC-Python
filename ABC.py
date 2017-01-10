@@ -22,7 +22,7 @@ class ABC(object):
 			c.onlookerCycle("tournament",self.bees)
 			c.scoutCycle(self.bees)
 			self.bests.append(copy.copy(c.findBest(self.bees)))
-			print("step:"+ str(i))
+			#print("step:"+ str(i))
 		#write result File
 		c.writeResult("out/"+ outname, self.bests)
 

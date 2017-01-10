@@ -28,40 +28,11 @@ class Bee:
         if(param.isbias == "yes"):
             for _ in range(0,len(param.dim)-1):
                 self.bias.append(random.uniform(-1,1))
+        self.output = []
 
-   # def __init__(self, param=Parameters): 
-        #self.objvalue = float("inf")
-        #self.limit = int(0)
-        #initialize layers
-       # self.layers = []
-        #for i in range(0,len(param.dim)):
-        #    self.layers.extend(Bee.Layer(param.dim[i]))
-        #for i in range(0,len(param.dim)):
-           # if(i != 0):
-             #   self.layers[i].prev = self.layers[i-1]
-            #if(i != len(param.dim)-1):
-               # self.layers[i].next = self.layers[i+1]
-            
-
-       # for i in range(0,size):
-            #self.genotype.append(random.uniform(lowerbound[i], upperbound[i]))
- 
         Bee.total +=1
     
     @classmethod
     def howmany(cls):
         print ("currently {:d} bees".format(cls.total))
         
-#classe de cada layer da rede neural
-class Layer(object):
-
-    """docstring for Layer"""
-    def __init__(self, size, prev = None, next = None):
-        super(Layer, self).__init__()
-        self.prev = prev
-        self.next = next
-        self.size = size
-        self.bias = random.uniform(-1,1)
-        self.weights = []
-        if (next!= None):
-            self.weights.extend(list(2*np.random.random((self.size * next.size)-1)))    
