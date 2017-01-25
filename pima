@@ -2,9 +2,9 @@
 50
 1
 10
-2 2
--2 2
-20
+-0.3 -0.3 
+0.3 0.3
+200
 yes
 datasets/pima-indians-diabetes.csv
 datasets/diabetes_testset.csv

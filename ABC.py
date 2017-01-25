@@ -19,7 +19,7 @@ class ABC(object):
 		#loop de iteracao
 		for i in range(0, p.MCN):
 			c.employedCycle(self.bees)
-			c.onlookerCycle("tournament",self.bees)
+			c.onlookerCycle("std",self.bees)
 			c.scoutCycle(self.bees)
 			self.bests.append(copy.copy(c.findBest(self.bees)))
 			#print("step:"+ str(i))

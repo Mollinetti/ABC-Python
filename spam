@@ -1,0 +1,10 @@
+57 10 1
+50
+1
+10
+-0.3 -0.3
+0.3 0.3
+1
+yes
+datasets/spam.csv
+datasets/spam-treino.csv

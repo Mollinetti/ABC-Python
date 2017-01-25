@@ -99,7 +99,7 @@ class Cycles ():
             for i in range (0, len(chosen)):
                 temp = copy.deepcopy(sol[chosen[i]])
                 j = random.randint(0,self.parameters.size-1) 
-                temp.weights[j] = random.uniform(-1, 1) 
+                temp.weights[j] = random.uniform(self.parameters.lowBound[0], self.parameters.uppBound[0]) 
                 temp.objvalue, temp.output = self.evaluate(temp)
                 if(temp.objvalue < sol[chosen[i]].objvalue):
                     sol[chosen[i]].weights[j] = temp.weights[j] 
@@ -132,7 +132,7 @@ class Cycles ():
     #funtion that writes the results of the algorithm
     def writeResult(self, filename, bests = Bee):
         f = open(filename,'w')
-        f.write(str("ObjValue").rjust(5))
+        f.write(str("ObjValue\t").rjust(5))
         f.write("Accuracy" + "\t")
 
         f.write("\n")  
@@ -144,7 +144,9 @@ class Cycles ():
             for j in self.parameters.Z:
                 output = Eval.think(j,bests[i].weights,self.parameters.dim,bests[i].bias)
                 total_predicts+=1
-                if (numpy.around(self.parameters.Z2[count]) == numpy.around(output[-1])):
+                print("output:",numpy.around(output[-1]).astype(int))
+                print("test:",self.parameters.Z2[count].astype(int))
+                if ((numpy.around(self.parameters.Z2[count]).astype(int) == numpy.around(output[-1]).astype(int)).all()):
                     total_acertos += 1
                 count+=1
 

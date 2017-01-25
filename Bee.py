@@ -20,7 +20,7 @@ class Bee:
     def __init__(self, param=Parameters):
         self.weights = [] 
         for i in (range(0,len(param.dim)-1)):
-           self.weights.extend(list(2*np.random.random([param.dim[i] * param.dim[i+1]]) - 1))
+           self.weights.extend(np.random.uniform(param.lowBound[0],param.uppBound[0], param.dim[i] * param.dim[i+1]))
         self.objvalue = float("inf")
         self.limit = int(0)
         #if there is  number of bias, initialize it
@@ -36,3 +36,4 @@ class Bee:
     def howmany(cls):
         print ("currently {:d} bees".format(cls.total))
         
+np.random.random

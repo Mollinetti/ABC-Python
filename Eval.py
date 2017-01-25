@@ -70,7 +70,7 @@ def error2(training_set_inputs, training_set_outputs, weights, bias, dim):
 # Realiza testes #
 def think(inputs,weights,dim,bias):
     output = []
-    output.append(__sigmoid(numpy.dot(inputs, numpy.reshape(weights[0:dim[0]*dim[1]],(dim[0],dim[1]))) + bias[0]))
+    output.append(__sigmoid(numpy.array(numpy.dot(inputs, numpy.reshape(weights[0:dim[0]*dim[1]],(dim[0],dim[1]))) + bias[0]).astype(float)))
     cumulative = dim[0]*dim[1]
     for j in range(1,len(dim)-1):
     	output.append(__sigmoid(numpy.dot(output[j-1], numpy.reshape(weights[cumulative:cumulative+dim[j]*dim[j+1]],(dim[j],dim[j+1]))) + bias[j]))
