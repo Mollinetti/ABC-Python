@@ -60,6 +60,8 @@ class Params:
                     break
                 d.append([ 1 if i in x else 0 for i in range(n) ])
                 c+= 1
+
+            print("d:",d)
             for i in self.Y1:
                 if (i == "diaporthe-stem-canker"):
                     self.Y.append(d[0])
@@ -164,6 +166,28 @@ class Params:
             self.Z2= numpy.array([self.Z2,]).T
             print("ok")
 
+        elif(filename == "horse"):
+            data= pandas.read_csv("Datasets/horse.csv", header= None, delim_whitespace= True)
+
+            dataset = data.values
+
+            self.X= dataset[:,0:27]
+            self.Y= dataset[:,27]
+
+            aux = aux2 = 0
+
+            for i in self.X:
+                aux2 = 0    
+                for j in i:
+                    if (j == "?"):
+                        self.X[aux][aux2] = 0
+                    aux2 += 1
+
+                aux += 1
+
+            self.X = self.X.astype(float) # Não precisa converter p numpy matriz #
+
+
         elif(filename == "thyroid"):
             self.X= dataset[:,0:29]
             
@@ -177,7 +201,7 @@ class Params:
             
             #criando as labels
             n = 3
-            n1 = 3
+            n1 = 2
             d= []
             c = 0
             for x in itertools.combinations( range(n), n1 ) :
@@ -187,7 +211,7 @@ class Params:
                 c+= 1
 
             count= 0
-
+            print("d:",d)
             for i in self.Y:
                 aux, aux2 = i.split(".")
                 
@@ -201,29 +225,29 @@ class Params:
 
             aux= 0
 
-            for i in X:
+            for i in self.X:
                 aux2 = 0    
                 for j in i:
                     if (j == "F"):
-                        X[aux][aux2]= 0
+                        self.X[aux][aux2]= 0
                     elif (j == "M"):
-                        X[aux][aux2]= 1
+                        self.X[aux][aux2]= 1
                     elif (j == "f"):
-                        X[aux][aux2]= 0
+                        self.X[aux][aux2]= 0
                     elif (j == "t"):
-                        X[aux][aux2]= 1
+                        self.X[aux][aux2]= 1
                     elif (j == "?"):
-                        X[aux][aux2]= 0
+                        self.X[aux][aux2]= 0
                     elif (j == "SVI"):
-                        X[aux][aux2]= 0
+                        self.X[aux][aux2]= 0
                     elif (j == "SVHC"):
-                        X[aux][aux2]= 1
+                        self.X[aux][aux2]= 1
                     elif (j == "STMW"):
-                        X[aux][aux2]= 2
+                        self.X[aux][aux2]= 2
                     elif (j == "SVHD"):
-                        X[aux][aux2]= 3
+                        self.X[aux][aux2]= 3
                     elif (j == "other"):
-                        X[aux][aux2]= 4
+                       self.X[aux][aux2]= 4
 
                     aux2 += 1
 
